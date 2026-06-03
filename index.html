@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boids — Flocking Sandbox</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="stage" aria-label="Flock canvas">
+        <canvas id="scene"></canvas>
+        <div class="hud" aria-live="polite">
+          <span id="countHud">0 boids</span>
+          <span id="fpsHud">– fps</span>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Controls">
+        <div class="brand">
+          <h1>Boids</h1>
+          <p>Three local rules — separation, alignment, cohesion — and a flock appears.</p>
+        </div>
+
+        <div class="group">
+          <h2>Rules</h2>
+          <div class="control">
+            <div class="row"><label for="wSep">Separation</label><output id="wSepOut">1.7</output></div>
+            <input id="wSep" type="range" min="0" max="3" step="0.05" value="1.7" />
+          </div>
+          <div class="control">
+            <div class="row"><label for="wAlign">Alignment</label><output id="wAlignOut">1.0</output></div>
+            <input id="wAlign" type="range" min="0" max="3" step="0.05" value="1.0" />
+          </div>
+          <div class="control">
+            <div class="row"><label for="wCoh">Cohesion</label><output id="wCohOut">0.9</output></div>
+            <input id="wCoh" type="range" min="0" max="3" step="0.05" value="0.9" />
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Motion</h2>
+          <div class="control">
+            <div class="row"><label for="perception">Perception radius</label><output id="perceptionOut">55</output></div>
+            <input id="perception" type="range" min="20" max="160" step="1" value="55" />
+          </div>
+          <div class="control">
+            <div class="row"><label for="maxSpeed">Max speed</label><output id="maxSpeedOut">3.0</output></div>
+            <input id="maxSpeed" type="range" min="1" max="7" step="0.1" value="3.0" />
+          </div>
+          <div class="control">
+            <div class="row"><label for="count">Boids</label><output id="countOut">160</output></div>
+            <input id="count" type="range" min="10" max="500" step="10" value="160" />
+          </div>
+          <div class="control">
+            <label for="edges">Edges</label>
+            <select id="edges">
+              <option value="wrap" selected>Wrap around</option>
+              <option value="bounce">Bounce</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Mouse</h2>
+          <div class="control">
+            <label for="mouseMode">Cursor force</label>
+            <select id="mouseMode">
+              <option value="off" selected>Off</option>
+              <option value="attract">Attract (food)</option>
+              <option value="repel">Repel (predator)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Show</h2>
+          <div class="toggles">
+            <label><input id="tTrails" type="checkbox" /> Trails</label>
+            <label><input id="tVectors" type="checkbox" /> Velocity vectors</label>
+            <label><input id="tVision" type="checkbox" /> Vision radius</label>
+          </div>
+        </div>
+
+        <div class="button-grid">
+          <button id="pause" type="button">Pause</button>
+          <button id="reset" type="button">Reset</button>
+        </div>
+        <button id="addMore" type="button" class="secondary">+50 boids</button>
+
+        <p class="hint">Tip: crank <strong>Cohesion</strong> for a nervous blob, <strong>Alignment</strong> for laminar rivers, <strong>Separation</strong> for a scattered gas.</p>
+      </aside>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
